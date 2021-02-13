@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "ChannelChat"
+version = "0.1.0"
+description = "Chat app using Django Channels."
+authors = ["Anthony Suárez <neolight1010@gmail.com>"]
+license = "MIT"
+
+[tool.poetry.dependencies]
+python = "^3.7.9"
+Django = "^3.1.6"
+channels = "^3.0.3"
+
+[tool.poetry.dev-dependencies]
+flake8 = "^3.8.4"
+mypy = "^0.800"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
