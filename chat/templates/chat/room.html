@@ -1,7 +1,11 @@
 <!doctype html>
 
+{% load static %}
+
 <html lang="en">
 <head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    
     <meta charset="utf-8">
     <title>Room</title>
 </head>
@@ -9,42 +13,13 @@
 <body>
     <p>This is the chat room page: {{ room_name }}</P>
 
-    <div id="tester-div"></div>
-
     <textarea id="chat-text" cols=80 rows-30 placeholder="" disabled></textarea></br>
     <input id="message-input" type="text" size="80" /></br>
     <input id="send-message-btn" type="button" value="Send" /></br>
 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+
     {{ room_name|json_script:"room-name" }}
-    <script>
-        const roomName = JSON.parse(document.getElementById('room-name').textContent);
-
-        const chatSocket = new WebSocket(
-            'ws://' +
-            window.location.host +
-            '/ws/chat/' +
-            roomName +
-            '/'
-        );
-
-        chatSocket.onmessage = function(e) {
-            const data = JSON.parse(e.data);
-            console.log(data);
-            document.querySelector('#tester-div').innerHTML = data.tester;
-            document.querySelector("#chat-text").value += data.chatMessage + "\n";
-        };
-
-        document.querySelector("#send-message-btn").onclick = function (e) {
-            const messageInputDom = document.querySelector('#message-input');
-            const message = messageInputDom.value;
-
-            console.log("Sending: " + message)
-
-            chatSocket.send(JSON.stringify({
-                'chatMessage': message,
-            }));
-            messageInputDom.value = '';
-        };
-    </script>
+    <script src={% static 'chat/room.js' %}></script>
 </body>
 </html>
