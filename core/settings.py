@@ -122,3 +122,8 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 ASGI_APPLICATION = "core.routing.application"
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels.layers.InMemoryChannelLayer',
+    }
+}
