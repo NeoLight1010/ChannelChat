@@ -19,7 +19,7 @@
 
             <ul class="nav navbar-nav">
                 <li class="nav-item active">
-                    <a class="nav-link" href="/chat">Chat <span class='sr-only'>(current)</span></a>
+                    <a class="nav-link" href="/chat">Chat</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">About</a>
@@ -29,5 +29,30 @@
                 </li>
             </ul>
         </nav>
+
+        <div class='container-fluid p-3 d-flex flex-column justify-content-center' id='content'>
+            <div class='row'><h1 class='text-center'>ChannelChat</h1></div>
+
+            <div class='row d-flex justify-content-center p-3'>
+                <div class='col-3'>
+                    <form id='enter-room-form' class='p-3 d-flex flex-column justify-content-center'>
+                        <div class="form-group">
+                            <label for="room-name">Room Name</label>
+                            <input id="room-name" class="form-control" type="text" placeholder="My Room"></input>
+                        </div>
+                        
+                        <input id="enter-room" type="button" class="btn btn-primary" value="Enter room"></input>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <script type='text/javascript' src='{% static 'core/index.js' %}'></script>
     </body>
+
+    <style>
+        form .form-group {
+            margin-bottom: 10px;
+        }
+    </style>
 </html>

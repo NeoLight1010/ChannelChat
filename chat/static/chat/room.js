@@ -11,15 +11,12 @@ const chatSocket = new WebSocket(
 chatSocket.onmessage = function(e) {
     const data = JSON.parse(e.data);
     console.log(data);
-    document.querySelector('#tester-div').innerHTML = data.tester;
     document.querySelector("#chat-text").value += data.chatMessage + "\n";
 };
 
 document.querySelector("#send-message-btn").onclick = function (e) {
     const messageInputDom = document.querySelector('#message-input');
     const message = messageInputDom.value;
-
-    console.log("Sending: " + message)
 
     chatSocket.send(JSON.stringify({
         'chatMessage': message,

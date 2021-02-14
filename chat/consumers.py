@@ -50,6 +50,15 @@ class ChatRoomConsumer(AsyncWebsocketConsumer):
         )
 
     async def disconnect(self, close_code):
+        # Send disconnect message
+        await self.channel_layer.group_send(
+            self.room_group_name,
+            {
+                'type': 'chat_message',
+                'message': 'User has disconnected'
+            }
+        )
+
         await self.channel_layer.group_discard(
             self.room_group_name,
             self.channel_name
